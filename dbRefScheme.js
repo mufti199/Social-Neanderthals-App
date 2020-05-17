@@ -15,7 +15,7 @@ let db = {
     {
       created: "2020-05-11T22:32:02.893Z",
       email: "user@email.com",
-      handle: "user",
+      userHandle: "user",
       userId: "UID - auto-generated",
       imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${imageFilename}?alt=media`,
       bio: "Blob",
@@ -32,6 +32,17 @@ let db = {
       created: "2020-05-11T22:32:02.893Z",
     },
   ],
+
+  notifications: [
+    {
+      recipient: "user",
+      sender: "organizer1",
+      read: "true | false",
+      created: "2020-05-16T22:32:02.893Z",
+      screamId: "GFBKAsMSUbP3zinj3bDl",
+      type: "like | comment",
+    },
+  ],
 };
 
 // IMPORTANT TIP: Firebase charges on the number of reads thus, minimze it.
@@ -41,7 +52,7 @@ const userDetails = {
   credentials: {
     userId,
     email,
-    handle,
+    userHandle,
     created,
     imageUrl,
     bio,

@@ -61,7 +61,9 @@ exports.signup = (req, res) => {
       if (err.code === "auth/email-already-in-use") {
         return res.status(400).json({ email: "Email is already in use." });
       } else {
-        return res.status(500).json({ error: err.code });
+        return res
+          .status(500)
+          .json({ general: "Something went wrong, please try again." });
       }
     });
 };
@@ -94,7 +96,6 @@ exports.login = (req, res) => {
           .status(403)
           .json({ general: "Wrong credentials. Please try again." });
       }
-      return res.status(500).json({ error: err.code });
     });
 };
 
@@ -114,7 +115,7 @@ exports.addUserDetails = (req, res) => {
     });
 };
 
-// Get User Details
+// Get logged in user's Details
 
 exports.getAuthenticUser = (req, res) => {
   let userData = {};
@@ -133,6 +134,55 @@ exports.getAuthenticUser = (req, res) => {
       userData.likes = [];
       data.forEach((doc) => {
         userData.likes.push(doc.data());
+      });
+      return db
+        .collection("notifications")
+        .where("recipient", "==", req.user.handle)
+        .orderBy("created", "desc")
+        .limit(10)
+        .get();
+    })
+    .then((data) => {
+      userData.notifications = [];
+      data.forEach((doc) => {
+        userData.notifications.push({
+          notificationId: doc.id,
+          ...doc.data(),
+        });
+      });
+      return res.json(userData);
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    });
+};
+
+// Get any user's details
+
+exports.getUserDetails = (req, res) => {
+  userData = {};
+  db.doc(`/users/${req.params.handle}`)
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        userData.user = doc.data();
+        return db
+          .collection("screams")
+          .where("userHandle", "==", req.params.handle)
+          .orderBy("created", "desc")
+          .get();
+      } else {
+        return res.status(404).json({ error: "User not found." });
+      }
+    })
+    .then((query) => {
+      userData.screams = [];
+      query.forEach((data) => {
+        userData.screams.push({
+          screamId: data.id,
+          ...data.data(),
+        });
       });
       return res.json(userData);
     })
@@ -191,4 +241,22 @@ exports.uploadImage = (req, res) => {
       });
   });
   busboy.end(req.rawBody);
+};
+
+// Mark Notifications Read
+exports.markNotificationsRead = (req, res) => {
+  let batch = db.batch();
+  req.body.forEach((notificationId) => {
+    const notification = db.doc(`/notifications/${notificationId}`);
+    batch.update(notification, { read: true });
+  });
+  batch
+    .commit()
+    .then(() => {
+      return res.json({ message: "Notifications marked 'read'" });
+    })
+    .catch((err) => {
+      console.error(err);
+      return res.status(500).json({ error: err.code });
+    });
 };
