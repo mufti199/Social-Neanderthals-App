@@ -12,6 +12,7 @@ const {
 } = require("../util/validators");
 
 // SingUp
+// Requirements: 1. Email 2. Password 3. Confirm Password 4. Handle
 exports.signup = (req, res) => {
   const newUser = {
     email: req.body.email,
@@ -69,6 +70,7 @@ exports.signup = (req, res) => {
 };
 
 // Login
+// Requirements: 1. Email 2. Password
 exports.login = (req, res) => {
   const user = {
     email: req.body.email,
@@ -100,7 +102,7 @@ exports.login = (req, res) => {
 };
 
 // Add User Details
-
+// Requirements: 1. AuthToken 2. Details in json (Follow default data structure)
 exports.addUserDetails = (req, res) => {
   let userDetails = reduceUserDetails(req.body);
 
@@ -116,7 +118,7 @@ exports.addUserDetails = (req, res) => {
 };
 
 // Get logged in user's Details
-
+// Requirements: 1. AuthToken
 exports.getAuthenticUser = (req, res) => {
   let userData = {};
   db.doc(`/users/${req.user.handle}`)
@@ -159,7 +161,7 @@ exports.getAuthenticUser = (req, res) => {
 };
 
 // Get any user's details
-
+// Requirements: 1. User Handle (via url)
 exports.getUserDetails = (req, res) => {
   userData = {};
   db.doc(`/users/${req.params.handle}`)
@@ -193,7 +195,7 @@ exports.getUserDetails = (req, res) => {
 };
 
 // Upload User Profile Image
-
+// Requirements: 1. AuthToken  2. Image (via form-data)
 exports.uploadImage = (req, res) => {
   const BusBoy = require("busboy");
   const path = require("path");
@@ -244,6 +246,7 @@ exports.uploadImage = (req, res) => {
 };
 
 // Mark Notifications Read
+// Requirements: 1. AuthToken 2. Array of NotificationId's
 exports.markNotificationsRead = (req, res) => {
   let batch = db.batch();
   req.body.forEach((notificationId) => {
