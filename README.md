@@ -1,5 +1,5 @@
 # Social-Neanderthals-App
-A social media web application that is based off of Twitter, but customized for neanderthals.
+A social media web application similar to Twitter, but customized for neanderthals.
 
 The project is essentially a remodelled version of Ahmed Hadjou's [social-ape-app](https://github.com/hidjou), but built completely from the ground up, by following the latest documentation and using newer components, functions, and guidelines (e.g. React Hooks).
 
