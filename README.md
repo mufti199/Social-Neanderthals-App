@@ -9,7 +9,7 @@ A work in progress by **Gazi Mufti Mahmood**
 ### Components used till now
 **Backend**
 - Node.js
-- Google Firebase: Firestore (NoSQL) 
+- Google Firebase
 - Express
 - Busboy
 
