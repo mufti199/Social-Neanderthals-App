@@ -21,16 +21,13 @@ In order to see the current progress, run *npm start* from this [folder](/social
 
 ## Run Application
 
-### 1: API Base URL
-Add *COMING SOON* as the 'proxy' value in package.json
-
-### 2: Install packages
+### 1: Install packages
 run `npm instll`
 
-### 3: Run project
+### 2: Run project
 run `npm start`
 
-### 4: Open it
+### 3: Open it
 go to [http://localhost:3000](http://localhost:3000)
 <br />  
 
