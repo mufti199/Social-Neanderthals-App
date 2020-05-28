@@ -19,20 +19,27 @@ In order to see the current progress, run *npm start* from this [folder](/social
 - React Router DOM
 - Day.js
 
+## Run Application
+
+### 1: API Base URL
+Add *COMING SOON* as the 'proxy' value in package.json
+
+### 2: Install packages
+run `npm instll`
+
+### 3: Run project
+run `npm start`
+
+### 4: Open it
+go to [http://localhost:3000](http://localhost:3000)
+<br />  
+
 ### More Documnetaion Coming Soon...
-\
-\
-***Current Frontend***\
+ ***Current Frontend***\
 <img src="images/loaded.PNG" width="60%">\
 [More images](/images/)
 
-### `npm start`
 
-Runs the app in the development mode by starting it from social-client app.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 
 ## Acknowledgments
