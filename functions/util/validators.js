@@ -23,14 +23,21 @@ exports.validateSignupData = (data) => {
     errors.password = "Passwords must match";
   }
 
+  // Confirm Password validation
+  if (isEmpty(data.password)) {
+    errors.confirmPassword = "Confirm Password must not be empty.";
+  } else if (data.password !== data.confirmPassword) {
+    errors.confirmPassword = "Passwords must match";
+  }
+
   // Handle validation
   if (isEmpty(data.handle)) {
     errors.handle = "Handle must not be empty.";
   }
 
   return {
-    errors,
     valid: Object.keys(errors).length === 0 ? true : false,
+    errors,
   };
 };
 
@@ -39,12 +46,21 @@ exports.validateSignupData = (data) => {
 exports.validateLoginData = (data) => {
   let errors = {};
 
-  if (isEmpty(data.email)) errors.email = "Email must not be empty";
-  if (isEmpty(data.password)) errors.password = "Password must not be empty";
+  // Email validation
+  if (isEmpty(data.email)) {
+    errors.email = "Email must not be empty.";
+  } else if (!isEmail(data.email)) {
+    errors.email = "Must be a valid email address";
+  }
+
+  // Password validation
+  if (isEmpty(data.password)) {
+    errors.password = "Password must not be empty.";
+  }
 
   return {
-    errors,
     valid: Object.keys(errors).length === 0 ? true : false,
+    errors,
   };
 };
 

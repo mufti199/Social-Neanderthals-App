@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid/";
-import axios from "axios";
+
+// Componenets
 import Scream from "../components/Scream";
+import Profile from "../components/Profile";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import { getScreams } from "../redux/actions/dataActions";
 
 const Home = () => {
-  const [screams, setScreams] = useState(null);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
+  const screams = data.screams;
 
   // Fetching Screams from server
   useEffect(() => {
-    let getScreams = async () => {
-      axios
-        .get("/screams")
-        .then((res) => {
-          console.log(res.data);
-          setScreams(res.data);
-        })
-        .catch((err) => console.error(err));
-    };
-    getScreams();
+    console.log("getscreams!");
+    dispatch(getScreams());
   }, []);
 
   let recentScreamsMarkup = screams ? (
@@ -32,7 +32,7 @@ const Home = () => {
         {recentScreamsMarkup}
       </Grid>
       <Grid item xs={4}>
-        <p>Profile...</p>
+        <Profile />
       </Grid>
     </Grid>
   );

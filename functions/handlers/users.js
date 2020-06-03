@@ -29,7 +29,7 @@ exports.signup = (req, res) => {
 
   // Creating new user
   const noImg = "no-img.png";
-  let token, userId;
+  let userId;
   db.doc(`/users/${newUser.handle}`)
     .get()
     .then((doc) => {
@@ -46,17 +46,21 @@ exports.signup = (req, res) => {
     // User Credentials
     .then((data) => {
       userId = data.user.uid;
-      token = data.user.getIdToken();
+      return data.user.getIdToken();
+    })
+    .then((token) => {
+      return res.status(201).json({ token });
+    })
+    .then(() => {
       const userCredentials = {
         handle: newUser.handle,
         email: newUser.email,
-        created: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
         imageUrl: `https://firebasestorage.googleapis.com/v0/b/${config.storageBucket}/o/${noImg}?alt=media`,
         userId,
       };
       return db.doc(`/users/${newUser.handle}`).set(userCredentials);
     })
-    .then(() => res.status(201).json({ token }))
     .catch((err) => {
       console.error(err);
       if (err.code === "auth/email-already-in-use") {
