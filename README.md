@@ -3,8 +3,7 @@ A social media web application similar to Twitter, but customized for neandertha
 
 The project is essentially a remodelled version of Ahmed Hadjou's [social-ape-app](https://github.com/hidjou), but built completely from the ground up, by following the latest documentation and using newer components, functions, and guidelines (e.g. React Hooks).
 
-A work in progress by **Gazi Mufti Mahmood**\
-In order to see the current progress, run *npm start* from this [folder](/socialapp-client)
+A work in progress by **Gazi Mufti Mahmood**
 
 ### Components used till now
 **Backend**
@@ -17,22 +16,27 @@ In order to see the current progress, run *npm start* from this [folder](/social
 - React
 - Material UI
 - React Router DOM
+- Axios
 - Day.js
 
+## Run Application
+
+### 1: Install packages
+run `npm instll` from [socialapp-client](/socialapp-client/)
+
+### 2: Run project
+run `npm start`
+
+### 3: Open it
+go to [http://localhost:3000](http://localhost:3000)
+<br />  
+
 ### More Documnetaion Coming Soon...
-\
-\
-***Current Frontend***\
+ ***Current Frontend***\
 <img src="images/loaded.PNG" width="60%">\
 [More images](/images/)
 
-### `npm start`
 
-Runs the app in the development mode by starting it from social-client app.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
 
 ## Acknowledgments
