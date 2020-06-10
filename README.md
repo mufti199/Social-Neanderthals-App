@@ -18,6 +18,8 @@ The project is aimed to mimic a few of Twitters primary features on a small scal
 - Follow feature (NewsFeed will be shifted to 'following')
 
 A work in progress by **Gazi Mufti Mahmood**
+<br/>
+<br/>
 
 ### Technologies and Packages used till now
 **Backend**
