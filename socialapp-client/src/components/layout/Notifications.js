@@ -73,7 +73,6 @@ const Notifications = () => {
   if (notifications && notifications.length > 0) {
     let unread = notifications.filter((notif) => notif.read === false).length;
     if (unread > 0) {
-      console.log("badge");
       notificationsIcon = (
         <Badge badgeContent={unread} color="error">
           <NotificationsIcon />

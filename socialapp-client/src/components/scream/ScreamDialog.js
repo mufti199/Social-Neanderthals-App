@@ -89,7 +89,6 @@ const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
     } else {
       setOldPath(`${window.location.pathname}`);
     }
-    console.log(oldPath);
     window.history.pushState(null, null, newPath);
 
     setOpen(true);
@@ -97,12 +96,6 @@ const ScreamDialog = ({ screamId, userHandle, openDialog }) => {
   };
 
   const handleClose = () => {
-    // if (openDialog) {
-    //   window.location.pathname = `/user/${userHandle}`;
-    // } else {
-    //   window.history.back();
-    // }
-    console.log(oldPath);
     window.history.pushState(null, null, oldPath);
 
     setOpen(false);
