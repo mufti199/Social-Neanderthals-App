@@ -48,6 +48,7 @@ const useStyles = makeStyles((customTheme) => ({
   expandButton: {
     position: "absolute",
     left: "90%",
+    top: "70%",
   },
   loadingCircle: {
     textAlign: "center",

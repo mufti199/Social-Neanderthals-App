@@ -24,14 +24,17 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { useSelector } from "react-redux";
 
 // Styles
-const useStyles = makeStyles({
+const useStyles = makeStyles((customTheme) => ({
   card: {
     position: "relative",
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
-    minWidth: "80%",
+    marginBottom: 10,
+    marginTop: 10,
+    width: "80%",
+    [customTheme.breakpoints.down("xs")]: {
+      width: "98%",
+    },
   },
   image: {
     height: 150,
@@ -41,8 +44,12 @@ const useStyles = makeStyles({
   content: {
     padding: "auto",
     objectFit: "cover",
+    [customTheme.breakpoints.down("xs")]: {
+      display: "flex",
+      flexDirection: "column",
+    },
   },
-});
+}));
 
 const Scream = ({ scream, openDialog }) => {
   const classes = useStyles();
@@ -71,6 +78,12 @@ const Scream = ({ scream, openDialog }) => {
         title="Profile image"
         className={classes.image}
       />
+      {deleteButton}
+      <ScreamDialog
+        screamId={screamId}
+        userHandle={userHandle}
+        openDialog={openDialog}
+      />
       <CardContent className={classes.content}>
         <Typography
           variant="h5"
@@ -80,23 +93,20 @@ const Scream = ({ scream, openDialog }) => {
         >
           {userHandle}{" "}
         </Typography>
-        {deleteButton}
         <Typography variant="body2" color="textSecondary">
           Screamed: {dayjs(created).fromNow()}
         </Typography>
-
-        <Typography variant="body1">{body} </Typography>
-        <LikeButton screamId={screamId} />
-        <span>{likeCount} Likes</span>
-        <MyButton tipTitle="comments">
-          <ChatIcon color="primary" />
-        </MyButton>
-        <span>{commentCount} Comments</span>
-        <ScreamDialog
-          screamId={screamId}
-          userHandle={userHandle}
-          openDialog={openDialog}
-        />
+        <span>
+          <Typography variant="body1">{body} </Typography>
+          <LikeButton screamId={screamId} />
+          {likeCount} Likes
+        </span>
+        <span>
+          <MyButton tipTitle="comments">
+            <ChatIcon color="primary" />
+          </MyButton>
+          {commentCount} Comments
+        </span>
       </CardContent>
     </Card>
   );

@@ -58,6 +58,7 @@ export default {
   paper: {
     padding: 20,
     width: "70%",
+    margin: "auto",
   },
   profile: {
     "& .imageWrapper": {

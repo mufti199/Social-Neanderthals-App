@@ -42,7 +42,7 @@ const CommentForm = ({ screamId }) => {
 
   // Render Comment Post Section
   const commentFormMarkup = authenticated ? (
-    <Grid item sm={12} style={{ textAlign: "center" }}>
+    <Grid item sm={12} style={{ textAlign: "center", width: "80%" }}>
       <form onSubmit={handleSubmit}>
         <TextField
           name="body"

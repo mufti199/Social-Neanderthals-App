@@ -19,6 +19,11 @@ const useStyles = makeStyles((customTheme) => ({
   commentData: {
     marginLeft: 20,
   },
+  commentDataContainer: {
+    [customTheme.breakpoints.down("xs")]: {
+      flexDirection: "column",
+    },
+  },
 }));
 
 const Comments = ({ comments }) => {
@@ -33,7 +38,7 @@ const Comments = ({ comments }) => {
         return (
           <Fragment key={created}>
             <Grid item sm={12}>
-              <Grid container>
+              <Grid container className={classes.commentDataContainer}>
                 <Grid item sm={2}>
                   <img
                     src={userImage}
@@ -41,19 +46,17 @@ const Comments = ({ comments }) => {
                     className={classes.commentImage}
                   />
                 </Grid>
-                <Grid item sm={9}>
-                  <div className={classes.commentData}>
-                    <Link to={`/user/${userHandle}`}>
-                      <Typography variant="h5" color="primary">
-                        {userHandle}
-                      </Typography>
-                    </Link>
-                    <Typography variant="body2" color="textSecondary">
-                      {dayjs(created).format("h:mm a, MMMM DD YYYY")}
+                <Grid item sm={9} className={classes.commentData}>
+                  <Link to={`/user/${userHandle}`}>
+                    <Typography variant="h5" color="primary">
+                      {userHandle}
                     </Typography>
-                    <hr className={classes.invisibleSeparator} />
-                    <Typography variabnt="body1">{body}</Typography>
-                  </div>
+                  </Link>
+                  <Typography variant="body2" color="textSecondary">
+                    {dayjs(created).format("h:mm a, MMMM DD YYYY")}
+                  </Typography>
+                  <hr className={classes.invisibleSeparator} />
+                  <Typography variabnt="body1">{body}</Typography>
                 </Grid>
               </Grid>
             </Grid>

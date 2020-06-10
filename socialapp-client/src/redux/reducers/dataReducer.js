@@ -58,7 +58,7 @@ export default function (state = initialState, action) {
         ...state,
         scream: {
           ...state.scream,
-          comments: [action.payload, ...state.scream.comments],
+          comments: [...state.scream.comments, action.payload],
         },
       };
     case DELETE_SCREAM:

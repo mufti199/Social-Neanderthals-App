@@ -66,7 +66,7 @@ const User = () => {
     );
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={8}>
       <Grid item sm={4} xs={12}>
         {profileMarkup}
       </Grid>
